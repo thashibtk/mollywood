@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 interface BackgroundImageProps {
-  src?: string; // Image path from /public/bgs folder (e.g., "bg1.jpg")
+  src?: string; // Image path from /public/bgs folder (e.g., "bg1.webp")
   opacity?: number; // 0 to 1, default 0.3
   blur?: number; // Blur amount in pixels, default 0
   overlay?: boolean; // If true, acts as overlay (default true)
@@ -13,7 +13,7 @@ interface BackgroundImageProps {
 }
 
 export default function BackgroundImage({
-  src = "bg1.jpg",
+  src = "bg1.webp",
   opacity = 0.3,
   blur = 0,
   overlay = true,
@@ -76,13 +76,13 @@ export default function BackgroundImage({
 
 // Export a list of available backgrounds for easy reference
 export const availableBackgrounds = [
-  "bg1.jpg",
-  "bg2.jpg",
-  "bg3.jpg",
-  "bg4.jpg",
-  "bg5.jpg",
-  "bg6.jpg",
-  "bg7.jpg",
+  "bg1.webp",
+  "bg2.webp",
+  "bg3.webp",
+  "bg4.webp",
+  "bg5.webp",
+  "bg6.webp",
+  "bg7.webp",
 ] as const;
 
 export type BackgroundType = (typeof availableBackgrounds)[number];

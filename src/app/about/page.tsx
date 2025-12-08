@@ -181,7 +181,7 @@ export default function About() {
           className="mb-2 mt-20"
         >
           <AlienImage
-            src="/alien/aboutus.png"
+            src="/alien/aboutus.webp"
             alt="Alien"
             className="left-2 sm:left-5 md:left-8 lg:left-15 w-48  h-34 sm:w-64 sm:h-50 md:w-80 md:h-64 lg:w-96 lg:h-64"
           />

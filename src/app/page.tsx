@@ -104,7 +104,7 @@ export default function Home() {
               className="mb-8 sm:mb-12"
             >
               <AlienImage
-                src="/alien/main.jpg"
+                src="/alien/main.webp"
                 alt="Alien"
                 className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80"
                 flyingAway={false}
@@ -125,7 +125,7 @@ export default function Home() {
               className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
             >
               <AlienImage
-                src="/alien/alien1.png"
+                src="/alien/alien1.webp"
                 alt="Alien"
                 className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80"
                 flyingAway={true}
@@ -255,3 +255,4 @@ export default function Home() {
     </div>
   );
 }
+

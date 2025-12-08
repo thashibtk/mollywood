@@ -71,7 +71,7 @@ export default function Shop() {
   return (
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
       <StarsBackground />
-      <BackgroundImage src="bg3.jpg" opacity={0.3} />
+      <BackgroundImage src="bg3.webp" opacity={0.3} />
       <Header />
 
       <div

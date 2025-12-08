@@ -101,7 +101,7 @@ export default function Contact() {
   return (
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
       <StarsBackground />
-      <BackgroundImage src="bg2.jpg" opacity={0.4} />
+      <BackgroundImage src="bg2.webp" opacity={0.4} />
       
 
       <div

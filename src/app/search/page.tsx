@@ -111,7 +111,7 @@ function SearchContent() {
   return (
     <div className="relative min-h-screen bg-black text-white">
       <StarsBackground />
-      <BackgroundImage src="bg1.jpg" opacity={0.5} />
+      <BackgroundImage src="bg1.webp" opacity={0.5} />
       <div className="relative z-10 min-h-screen pt-24 pb-16 px-4">
         <div className="max-w-7xl mx-auto">
           {/* Header */}

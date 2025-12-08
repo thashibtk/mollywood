@@ -308,7 +308,7 @@ export default function CategoryPage() {
   return (
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
       <StarsBackground />
-      <BackgroundImage src="bg1.jpg" opacity={0.5} />
+      <BackgroundImage src="bg1.webp" opacity={0.5} />
       <Header />
 
       <div

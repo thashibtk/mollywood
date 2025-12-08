@@ -316,7 +316,7 @@ export default function ProductDetailPage() {
     return (
       <div className="relative min-h-screen bg-black text-white flex items-center justify-center">
         <StarsBackground />
-        <BackgroundImage src="bg3.jpg" opacity={0.7} />
+        <BackgroundImage src="bg3.webp" opacity={0.7} />
         <Header />
         <div className="relative z-10 text-center">
           <h1 className="text-4xl mb-4">Product Not Found</h1>
@@ -344,7 +344,7 @@ export default function ProductDetailPage() {
   return (
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
       <StarsBackground />
-      <BackgroundImage src="bg4.jpg" opacity={0.7} />
+      <BackgroundImage src="bg4.webp" opacity={0.7} />
       <Header />
 
       <div
