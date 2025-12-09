@@ -5,7 +5,7 @@ import { Product as ShopProduct } from '@/types/product';
 export const getImageUrl = (imagePath: string | null | undefined): string => {
   if (!imagePath || imagePath.trim() === "") {
     console.log("[getImageUrl] No image path provided, using placeholder");
-    return "/placeholder.jpg";
+    return "/logo/logo.jpg";
   }
   
   const trimmedPath = imagePath.trim();
@@ -37,14 +37,14 @@ export const getImageUrl = (imagePath: string | null | undefined): string => {
     
     if (!data || !data.publicUrl) {
       console.error("[getImageUrl] No publicUrl in response:", data);
-      return "/placeholder.jpg";
+      return "/logo/logo.jpg";
     }
     
     console.log("[getImageUrl] Converted to:", data.publicUrl);
     return data.publicUrl;
   } catch (error) {
     console.error("[getImageUrl] Exception getting public URL for image:", trimmedPath, error);
-    return "/placeholder.jpg";
+    return "/logo/logo.jpg";
   }
 };
 
@@ -63,7 +63,7 @@ export const mapSupabaseToShopProduct = (
       ? validImages[0]
       : (product.image_url && product.image_url.trim() !== "")
       ? product.image_url
-      : "/placeholder.jpg";
+      : "/logo/logo.jpg";
   
   console.log("[mapSupabaseToShopProduct] Product ID:", product.id);
   console.log("[mapSupabaseToShopProduct] Raw image path:", rawImage);

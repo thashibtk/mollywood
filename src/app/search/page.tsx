@@ -217,6 +217,11 @@ function SearchContent() {
                           fill
                           className="object-cover transition-transform duration-700 group-hover:scale-110"
                           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.src = "/logo/logo.jpg";
+                          }}
+                          unoptimized={product.image.startsWith("https://")}
                         />
 
                         {/* Overlay */}
@@ -268,7 +273,7 @@ function SearchContent() {
                           </span>
                           {product.fit && (
                             <span className="text-xs text-gray-400">
-                              {product.fit} fit
+                              {product.fit}
                             </span>
                           )}
                         </div>

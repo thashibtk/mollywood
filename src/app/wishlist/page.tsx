@@ -206,7 +206,7 @@ export default function WishlistPage() {
                         </span>
                         {product.fit && (
                           <span className="text-xs text-gray-400">
-                            {product.fit} fit
+                            {product.fit}
                           </span>
                         )}
                       </div>

@@ -148,7 +148,7 @@ export default function ProfilePage() {
               </span>
             </div>
             <div>
-              <h1 className="text-3xl lg:text-4xl font-bold uppercase tracking-wider">
+              <h1 className="text-2xl font-bold tracking-wider sm:text-3xl lg:text-4xl">
                 {user.email || "User"}
               </h1>
             </div>

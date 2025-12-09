@@ -152,6 +152,7 @@ export default function Navbar() {
       router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
       setSearchQuery("");
       setIsSearchOpen(false);
+      setIsMobileMenuOpen(false);
     }
   };
 
@@ -227,7 +228,7 @@ export default function Navbar() {
         ref={navbarRef}
         className="fixed left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-b-2 border-white/20 h-16 md:h-20"
         style={{
-          top: "var(--navbar-top, 2.5rem)",
+          top: "var(--navbar-top, 0px)",
           transition: "top 0.3s ease-in-out",
         }}
         initial={{ y: 0, opacity: 1 }}
@@ -572,73 +573,158 @@ export default function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed md:hidden left-0 right-0 z-49 bg-black/95 backdrop-blur-sm border-b-2 border-white/20 overflow-hidden"
-            style={{
-              top: "calc(var(--navbar-top, 2.5rem) + 4rem)",
-              transition: "top 0.3s ease-in-out",
-            }}
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-[70] bg-black md:hidden flex flex-col"
           >
-            <div
-              className={`px-4 pb-4 space-y-4 ${isScrolled ? "pt-16" : "pt-4"}`}
-            >
-              {/* Mobile Navigation Links */}
-              {navItems.map((item, index) => (
-                <motion.button
-                  key={item.path}
-                  onClick={() => {
-                    router.push(item.path);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`w-full text-left py-3 px-4 text-base font-semibold uppercase tracking-wider transition-colors border-l-4 ${
-                    isActive(item.path)
-                      ? "text-white border-white bg-white/10"
-                      : "text-gray-400 border-transparent hover:text-white hover:bg-white/5"
-                  }`}
+            {/* Mobile Menu Header */}
+            <div className="flex items-center justify-between p-4 border-b border-white/10">
+              <button
+                onClick={() => router.push("/shop")}
+                className="flex items-center gap-2"
+              >
+                 <Image
+                  src="/logo/logo.jpg"
+                  alt="Mollywood Logo"
+                  width={32}
+                  height={32}
+                  className="object-contain rounded-full border-2 border-white p-1 md:w-10 md:h-10"
+                />
+                <div className="flex flex-col items-center leading-tight">
+                <span className="text-[0.4rem] md:text-[0.5rem] font-normal tracking-wider opacity-70">
+                  The
+                </span>
+                <span className="leading-none text-sm sm:text-base md:text-lg lg:text-xl">
+                  MOLLYWOOD
+                </span>
+                <span className="text-[0.4rem] md:text-[0.5rem] font-normal tracking-wider opacity-70">
+                  Clothing
+                </span>
+              </div>
+              </button>
+              
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="p-2 text-white hover:text-gray-300 transition-colors"
+                aria-label="Close menu"
+              >
+                <svg
+                  className="w-8 h-8"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  {item.label}
-                </motion.button>
-              ))}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            {/* Mobile Menu Content */}
+            <div className="flex-1 overflow-y-auto px-6 py-8 flex flex-col gap-8">
+              {/* Navigation Links */}
+              <div className="flex flex-col gap-6">
+                {navItems.map((item, index) => (
+                  <motion.button
+                    key={item.path}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    onClick={() => {
+                      router.push(item.path);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`text-3xl font-bold uppercase tracking-wider text-left transition-colors ${
+                      isActive(item.path)
+                        ? "text-white"
+                        : "text-gray-500 hover:text-white"
+                    }`}
+                  >
+                    {item.label}
+                  </motion.button>
+                ))}
+              </div>
 
               {/* Mobile Search */}
-              <div className="pt-4 border-t border-white/20">
+              <div className="mt-4">
                 <form
                   onSubmit={handleSearch}
-                  className="flex items-center gap-2"
+                  className="relative"
                 >
                   <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search products..."
-                    className="flex-1 px-3 py-2 bg-black border border-white/30 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-white transition-colors"
+                    className="w-full px-4 py-4 bg-white/5 border border-white/10 text-white placeholder-gray-500 rounded-lg text-lg focus:outline-none focus:border-white/30 transition-colors pl-12"
                   />
-                  <motion.button
-                    type="submit"
-                    whileTap={{ scale: 0.9 }}
-                    className="p-2 text-white hover:text-gray-300 transition-colors"
-                    aria-label="Search"
+                  <svg
+                    className="w-6 h-6 text-gray-400 absolute left-4 top-1/2 transform -translate-y-1/2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      />
-                    </svg>
-                  </motion.button>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                  </svg>
                 </form>
               </div>
+
+              {/* Divider */}
+              <div className="h-px bg-white/10 w-full my-2" />
+
+              {/* Quick Actions */}
+               <div className="grid grid-cols-2 gap-4">
+                  <button 
+                    onClick={() => {
+                      router.push("/wishlist");
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="flex flex-col items-center justify-center p-6 bg-white/5 rounded-xl border border-white/10 active:scale-95 transition-all"
+                  >
+                     <div className="relative">
+                       <svg className="w-8 h-8 mb-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                       </svg>
+                       {wishlist.length > 0 && (
+                          <span className="absolute -top-2 -right-2 w-5 h-5 bg-white text-black text-xs font-bold rounded-full flex items-center justify-center">
+                            {wishlist.length}
+                          </span>
+                        )}
+                     </div>
+                     <span className="text-gray-400 text-sm uppercase tracking-wider">Wishlist</span>
+                  </button>
+
+                  <button 
+                    onClick={() => {
+                      router.push("/cart");
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="flex flex-col items-center justify-center p-6 bg-white/5 rounded-xl border border-white/10 active:scale-95 transition-all"
+                  >
+                    <div className="relative">
+                      <svg className="w-8 h-8 mb-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                       {cart.length > 0 && (
+                          <span className="absolute -top-2 -right-2 w-5 h-5 bg-white text-black text-xs font-bold rounded-full flex items-center justify-center">
+                            {cart.length}
+                          </span>
+                        )}
+                    </div>
+                    <span className="text-gray-400 text-sm uppercase tracking-wider">Cart</span>
+                  </button>
+               </div>
             </div>
           </motion.div>
         )}
@@ -661,7 +747,7 @@ export default function Navbar() {
           {/* Home Button */}
           <motion.button
             onClick={() => {
-              router.push("/");
+              router.push("/shop");
               setIsMobileMenuOpen(false);
             }}
             whileTap={{ scale: 0.9 }}
@@ -688,7 +774,10 @@ export default function Navbar() {
 
           {/* Wishlist Button */}
           <motion.button
-            onClick={handleWishlistClick}
+            onClick={() => {
+              router.push("/wishlist");
+              setIsMobileMenuOpen(false);
+            }}
             whileTap={{ scale: 0.9 }}
             className="relative flex flex-col items-center justify-center gap-1 p-2 transition-colors text-gray-400 hover:text-white"
             aria-label="Wishlist"
@@ -720,7 +809,10 @@ export default function Navbar() {
 
           {/* Cart Button */}
           <motion.button
-            onClick={handleCartClick}
+            onClick={() => {
+              router.push("/cart");
+              setIsMobileMenuOpen(false);
+            }}
             whileTap={{ scale: 0.9 }}
             className="relative flex flex-col items-center justify-center gap-1 p-2 transition-colors text-gray-400 hover:text-white"
             aria-label="Cart"

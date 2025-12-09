@@ -31,13 +31,9 @@ export async function POST(request: NextRequest) {
     );
 
     if (!user) {
-      // Don't reveal if user exists or not for security
       return NextResponse.json(
-        {
-          success: true,
-          message: "If an account exists with this email, an OTP will be sent",
-        },
-        { status: 200 }
+        { error: "Email not registered" },
+        { status: 404 }
       );
     }
 
