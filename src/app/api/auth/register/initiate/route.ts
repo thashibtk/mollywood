@@ -123,7 +123,7 @@ export async function POST(request: NextRequest) {
           from: {
             email: "no-reply@themollywoodclothing.com",
           },
-          domain: "themollywoodclothing.com",
+          domain: "send.themollywoodclothing.com",
           template_id: "mollywood_signup",
         }),
       }

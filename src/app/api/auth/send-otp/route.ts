@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
           from: {
             email: "no-reply@themollywoodclothing.com", // Assuming this is the domain, based on user request "info@themollywoodclothing.com"
           },
-          domain: "themollywoodclothing.com", // Assuming this is the domain
+          domain: "send.themollywoodclothing.com", // Assuming this is the domain
           template_id: "password_reset_30",
         }),
       }
