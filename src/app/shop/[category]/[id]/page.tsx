@@ -580,7 +580,15 @@ export default function ProductDetailPage() {
                         </button>
                       </div>
                       <div className="flex flex-wrap gap-2">
-                        {product.size.map((size) => (
+                        {product.size.sort((a, b) => {
+                          const sizeOrder = ["XS", "S", "M", "L", "XL", "2XL", "3XL"];
+                          const indexA = sizeOrder.indexOf(a);
+                          const indexB = sizeOrder.indexOf(b);
+                          if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+                          if (indexA !== -1) return -1;
+                          if (indexB !== -1) return 1;
+                          return a.localeCompare(b);
+                        }).map((size) => (
                           <motion.button
                             key={size}
                             onClick={() => setSelectedSize(size)}
@@ -604,7 +612,15 @@ export default function ProductDetailPage() {
                           </p>
                         ) : (
                           <div className="space-y-1">
-                            {product.size.map((size) => (
+                            {product.size.sort((a, b) => {
+                              const sizeOrder = ["XS", "S", "M", "L", "XL", "2XL", "3XL"];
+                              const indexA = sizeOrder.indexOf(a);
+                              const indexB = sizeOrder.indexOf(b);
+                              if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+                              if (indexA !== -1) return -1;
+                              if (indexB !== -1) return 1;
+                              return a.localeCompare(b);
+                            }).map((size) => (
                               <p
                                 key={size}
                                 className="text-sm text-red-500 font-medium"

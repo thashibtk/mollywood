@@ -78,11 +78,26 @@ export const mapSupabaseToShopProduct = (
 
   // Convert sizes object to array (only include sizes with stock > 0)
   const sizeArray: string[] = [];
+  const sizeOrder = ["XS", "S", "M", "L", "XL", "2XL", "3XL"];
+  
   if (product.sizes) {
     Object.entries(product.sizes).forEach(([size, stock]) => {
       if (stock && stock > 0) {
         sizeArray.push(size);
       }
+    });
+    
+    // Sort sizes according to standard order
+    sizeArray.sort((a, b) => {
+      const indexA = sizeOrder.indexOf(a);
+      const indexB = sizeOrder.indexOf(b);
+      // If both are in the list, sort by index
+      if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+      // If only one is in the list, that one comes first (or last, depending on preference. Let's put known sizes first)
+      if (indexA !== -1) return -1;
+      if (indexB !== -1) return 1;
+      // If neither, sort alphabetically
+      return a.localeCompare(b);
     });
   }
 

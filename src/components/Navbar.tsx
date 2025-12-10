@@ -573,14 +573,14 @@ export default function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, x: "100%" }}
+            initial={{ opacity: 0, x: "-100%" }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
+            exit={{ opacity: 0, x: "-100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed inset-0 z-[70] bg-black md:hidden flex flex-col"
           >
             {/* Mobile Menu Header */}
-            <div className="flex items-center justify-between p-4 border-b border-white/10">
+            <div className="flex items-center justify-between p-4 border-b border-white/10 brand-font font-bold">
               <button
                 onClick={() => router.push("/shop")}
                 className="flex items-center gap-2"
@@ -593,16 +593,16 @@ export default function Navbar() {
                   className="object-contain rounded-full border-2 border-white p-1 md:w-10 md:h-10"
                 />
                 <div className="flex flex-col items-center leading-tight">
-                <span className="text-[0.4rem] md:text-[0.5rem] font-normal tracking-wider opacity-70">
-                  The
-                </span>
-                <span className="leading-none text-sm sm:text-base md:text-lg lg:text-xl">
-                  MOLLYWOOD
-                </span>
-                <span className="text-[0.4rem] md:text-[0.5rem] font-normal tracking-wider opacity-70">
-                  Clothing
-                </span>
-              </div>
+                  <span className="text-[0.4rem] md:text-[0.5rem] font-normal tracking-wider opacity-70">
+                    The
+                  </span>
+                  <span className="leading-none text-sm sm:text-base md:text-lg lg:text-xl">
+                    MOLLYWOOD
+                  </span>
+                  <span className="text-[0.4rem] md:text-[0.5rem] font-normal tracking-wider opacity-70">
+                    Clothing
+                  </span>
+                </div>
               </button>
               
               <button
@@ -633,7 +633,7 @@ export default function Navbar() {
                 {navItems.map((item, index) => (
                   <motion.button
                     key={item.path}
-                    initial={{ opacity: 0, x: 20 }}
+                    initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     onClick={() => {

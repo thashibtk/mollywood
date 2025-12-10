@@ -189,8 +189,17 @@ export default function CategoryPage() {
       product.size?.forEach((s) => sizes.add(s));
     });
 
+    const sizeOrder = ["XS", "S", "M", "L", "XL", "2XL", "3XL"];
+    
     return {
-      sizes: Array.from(sizes).sort(),
+      sizes: Array.from(sizes).sort((a, b) => {
+        const indexA = sizeOrder.indexOf(a);
+        const indexB = sizeOrder.indexOf(b);
+        if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+        if (indexA !== -1) return -1;
+        if (indexB !== -1) return 1;
+        return a.localeCompare(b);
+      }),
     };
   }, [allProducts]);
 

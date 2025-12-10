@@ -28,7 +28,7 @@ const faqCategories: FAQCategory[] = [
     actionText: "TRACK ORDERS",
     actionLink: "/orders",
     questions: [
-        {
+      {
         question: "Why are there different prices for the same product? Is it legal?",
         answer:
           "Mollywood products have only one fixed price based on their category (1111, 2222, 3333, etc.). There are no multiple prices for the same item. All pricing is transparent and fully legal.",
@@ -72,7 +72,6 @@ const faqCategories: FAQCategory[] = [
       },
     ],
   },
-
   {
     id: "terms",
     name: "Terms and Conditions",
@@ -117,7 +116,6 @@ const faqCategories: FAQCategory[] = [
       },
     ],
   },
-
   {
     id: "shipping",
     name: "Shipping, Order Tracking & Delivery",
@@ -187,7 +185,6 @@ const faqCategories: FAQCategory[] = [
       },
     ],
   },
-
   {
     id: "signup",
     name: "Sign Up and Login",
@@ -238,6 +235,7 @@ function FAQContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [activeCategory, setActiveCategory] = useState<string>("top-queries");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const category = searchParams.get("category");
@@ -245,6 +243,7 @@ function FAQContent() {
       const found = faqCategories.find((cat) => cat.id === category);
       if (found) {
         setActiveCategory(category);
+        setIsMobileMenuOpen(false); // Close mobile menu when category is selected
       }
     }
   }, [searchParams]);
@@ -256,25 +255,49 @@ function FAQContent() {
   return (
     <div className="relative min-h-screen bg-black text-white">
       <StarsBackground />
-      <div className="relative z-10 min-h-screen pt-24 pb-16 px-4 sm:px-6 md:px-8 lg:px-16">
-        {/* Header */}
+      <div className="relative z-10 min-h-screen pt-20 md:pt-24 pb-16 px-4 sm:px-6 md:px-8 lg:px-16">
+        {/* Mobile Menu Toggle */}
+        <div className="lg:hidden mb-6">
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="flex items-center gap-2 px-4 py-2 border border-white/30 rounded-lg text-white hover:bg-white/10 transition-all w-full justify-center"
+          >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+            >
+              {isMobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+            <span>{isMobileMenuOpen ? "Close Menu" : "FAQ Categories"}</span>
+          </button>
+        </div>
+
+        {/* Header - Responsive */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white">
             Frequently Asked Questions
           </h1>
           <button
             onClick={() => router.push("/contact")}
-            className="px-4 py-2 border-2 border-white/30 text-white hover:bg-white/10 transition-all text-sm font-medium"
+            className="px-4 py-2 border-2 border-white/30 text-white hover:bg-white/10 transition-all text-sm font-medium w-full sm:w-auto text-center"
           >
             CONTACT US
           </button>
         </div>
-        <p className="text-gray-400 mb-8">Still need help?</p>
+        
+        <p className="text-gray-400 mb-8 text-sm sm:text-base">Still need help?</p>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Sidebar Navigation */}
-          <aside className="w-full lg:w-64 flex-shrink-0">
-            <nav className="space-y-2">
+          {/* Sidebar Navigation - Responsive */}
+          <aside className={`${isMobileMenuOpen ? "block" : "hidden"} lg:block w-full lg:w-64 flex-shrink-0`}>
+            <nav className="space-y-2 bg-black/50 backdrop-blur-sm rounded-lg p-4 lg:bg-transparent lg:backdrop-blur-none lg:p-0">
               {faqCategories.map((category) => {
                 const isActive = activeCategory === category.id;
                 return (
@@ -283,15 +306,16 @@ function FAQContent() {
                     onClick={() => {
                       setActiveCategory(category.id);
                       router.push(`/faq?category=${category.id}`, { scroll: false });
+                      setIsMobileMenuOpen(false);
                     }}
-                    className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all ${
+                    className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all rounded-lg ${
                       isActive
                         ? "text-white font-semibold bg-white/10"
                         : "text-gray-300 hover:text-white hover:bg-white/5"
                     }`}
                   >
                     <svg
-                      className={`w-5 h-5 flex-shrink-0 ${
+                      className={`w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 ${
                         isActive ? "text-white" : "text-gray-400"
                       }`}
                       fill="none"
@@ -305,7 +329,7 @@ function FAQContent() {
                         d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
-                    <span className="text-sm md:text-base">{category.name}</span>
+                    <span className="text-sm sm:text-base truncate">{category.name}</span>
                   </button>
                 );
               })}
@@ -314,20 +338,28 @@ function FAQContent() {
 
           {/* Main Content */}
           <main className="flex-1">
+            {/* Mobile Category Indicator */}
+            <div className="lg:hidden flex items-center gap-2 mb-6 p-3 bg-white/5 rounded-lg">
+              <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="text-white font-medium">{currentCategory.name}</span>
+            </div>
+
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-1 h-12 bg-white"></div>
-              <h2 className="text-2xl md:text-3xl font-bold text-white">
+              <div className="w-1 h-8 sm:h-12 bg-white"></div>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white">
                 {currentCategory.name}
               </h2>
             </div>
 
             {currentCategory.description && (
-              <div className="mb-6">
-                <p className="text-gray-300 mb-4">{currentCategory.description}</p>
+              <div className="mb-6 p-4 sm:p-0">
+                <p className="text-gray-300 mb-4 text-sm sm:text-base">{currentCategory.description}</p>
                 {currentCategory.actionText && currentCategory.actionLink && (
                   <button
                     onClick={() => router.push(currentCategory.actionLink!)}
-                    className="px-4 py-2 border-2 border-white/30 text-white hover:bg-white/10 transition-all text-sm font-medium"
+                    className="px-4 py-2 border-2 border-white/30 text-white hover:bg-white/10 transition-all text-sm font-medium w-full sm:w-auto"
                   >
                     {currentCategory.actionText}
                   </button>
@@ -335,20 +367,20 @@ function FAQContent() {
               </div>
             )}
 
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {currentCategory.questions.map((faq, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="border-b border-white/20 pb-6 last:border-b-0"
+                  transition={{ delay: index * 0.05 }}
+                  className="border-b border-white/20 pb-4 sm:pb-6 last:border-b-0"
                 >
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-2">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-white mb-2">
                     {faq.question}
                   </h3>
                   {faq.answer && (
-                    <p className="text-gray-300 text-sm md:text-base leading-relaxed">
+                    <p className="text-gray-300 text-xs sm:text-sm md:text-base leading-relaxed">
                       {faq.answer}
                     </p>
                   )}
@@ -365,11 +397,8 @@ function FAQContent() {
 
 export default function FAQPage() {
   return (
-    <Suspense
-      fallback={<ScorpioLoader />}
-    >
+    <Suspense fallback={<ScorpioLoader />}>
       <FAQContent />
     </Suspense>
   );
 }
-
