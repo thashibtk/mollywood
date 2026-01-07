@@ -49,6 +49,10 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    router.prefetch("/begins");
+  }, [router]);
+
   const handleYes = () => {
     router.push("/begins");
   };
@@ -206,43 +210,49 @@ export default function Home() {
 
               <div className="flex flex-row gap-4 sm:gap-6 justify-center items-center flex-wrap">
                 <motion.button
-                  whileHover={{ scale: 1.15, rotateY: 5, z: 50 }}
+                  whileHover={{ 
+                    scale: 1.15, 
+                    rotateY: 5, 
+                    z: 50,
+                    boxShadow: "0 0 30px rgba(255, 255, 255, 0.8)"
+                  }}
                   whileTap={{ scale: 0.95 }}
+                  animate={{
+                    boxShadow: ["0 0 20px rgba(255, 255, 255, 0.3)", "0 0 40px rgba(255, 255, 255, 0.6)", "0 0 20px rgba(255, 255, 255, 0.3)"]
+                  }}
+                  transition={{
+                    boxShadow: {
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }
+                  }}
                   onClick={handleYes}
-                  onMouseEnter={(e) => {
-                    gsap.to(e.currentTarget, {
-                      boxShadow: "0 0 30px rgba(255, 255, 255, 0.8)",
-                      duration: 0.3,
-                    });
-                  }}
-                  onMouseLeave={(e) => {
-                    gsap.to(e.currentTarget, {
-                      boxShadow: "0 0 20px rgba(255, 255, 255, 0.3)",
-                      duration: 0.3,
-                    });
-                  }}
-                  className="px-8 sm:px-10 md:px-12 py-3 sm:py-4 border-2 border-white text-white font-bold text-base sm:text-lg md:text-xl uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300 pulse-glow transform-3d w-full sm:w-auto"
+                  className="px-8 sm:px-10 md:px-12 py-3 sm:py-4 border-2 border-white text-white font-bold text-base sm:text-lg md:text-xl uppercase tracking-wider hover:bg-white hover:text-black transition-colors duration-300 transform-3d w-full sm:w-auto"
                 >
                   Yes
                 </motion.button>
 
                 <motion.button
-                  whileHover={{ scale: 1.15, rotateY: -5, z: 50 }}
+                  whileHover={{ 
+                    scale: 1.15, 
+                    rotateY: -5, 
+                    z: 50,
+                    boxShadow: "0 0 30px rgba(255, 255, 255, 0.8)"
+                  }}
                   whileTap={{ scale: 0.95 }}
+                  animate={{
+                    boxShadow: ["0 0 20px rgba(255, 255, 255, 0.3)", "0 0 40px rgba(255, 255, 255, 0.6)", "0 0 20px rgba(255, 255, 255, 0.3)"]
+                  }}
+                  transition={{
+                    boxShadow: {
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }
+                  }}
                   onClick={handleNo}
-                  onMouseEnter={(e) => {
-                    gsap.to(e.currentTarget, {
-                      boxShadow: "0 0 30px rgba(255, 255, 255, 0.8)",
-                      duration: 0.3,
-                    });
-                  }}
-                  onMouseLeave={(e) => {
-                    gsap.to(e.currentTarget, {
-                      boxShadow: "0 0 20px rgba(255, 255, 255, 0.3)",
-                      duration: 0.3,
-                    });
-                  }}
-                  className="px-8 sm:px-10 md:px-12 py-3 sm:py-4 border-2 border-white text-white font-bold text-base sm:text-lg md:text-xl uppercase tracking-wider hover:bg-white hover:text-black transition-all duration-300 pulse-glow transform-3d w-full sm:w-auto"
+                  className="px-8 sm:px-10 md:px-12 py-3 sm:py-4 border-2 border-white text-white font-bold text-base sm:text-lg md:text-xl uppercase tracking-wider hover:bg-white hover:text-black transition-colors duration-300 transform-3d w-full sm:w-auto"
                 >
                   No
                 </motion.button>

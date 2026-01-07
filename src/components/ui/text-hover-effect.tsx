@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
-import { motion } from "motion/react";
+import { motion, useMotionValue } from "motion/react";
 
 export const TextHoverEffect = ({
   text,
@@ -10,23 +10,21 @@ export const TextHoverEffect = ({
   duration?: number;
 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
-  const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(false);
-  const [maskPosition, setMaskPosition] = useState({ cx: "50%", cy: "50%" });
+  const cx = useMotionValue("50%");
+  const cy = useMotionValue("50%");
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setCursor({ x: e.clientX, y: e.clientY });
       setHovered(true);
 
       if (svgRef.current) {
         const svgRect = svgRef.current.getBoundingClientRect();
         const cxPercentage = ((e.clientX - svgRect.left) / svgRect.width) * 100;
         const cyPercentage = ((e.clientY - svgRect.top) / svgRect.height) * 100;
-        setMaskPosition({
-          cx: `${cxPercentage}%`,
-          cy: `${cyPercentage}%`,
-        });
+        
+        cx.set(`${cxPercentage}%`);
+        cy.set(`${cyPercentage}%`);
       }
     };
 
@@ -41,7 +39,7 @@ export const TextHoverEffect = ({
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, []);
+  }, [cx, cy]);
 
   return (
     <svg
@@ -68,8 +66,8 @@ export const TextHoverEffect = ({
           id="revealMask"
           gradientUnits="userSpaceOnUse"
           r="20%"
-          initial={{ cx: "50%", cy: "50%" }}
-          animate={maskPosition}
+          cx={cx}
+          cy={cy}
           transition={{ duration: duration ?? 0.2, ease: "easeOut" }}
         >
           <stop offset="0%" stopColor="white" />
