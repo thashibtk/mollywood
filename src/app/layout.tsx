@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto_Condensed } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import Navbar from "@/components/Navbar";
 import StockUpdateTimer from "@/components/StockUpdateTimer";
 import { CartProvider } from "@/context/CartContext";
@@ -46,6 +47,7 @@ export default function RootLayout({
             {children}
           </CartProvider>
         </UserAuthProvider>
+        <Analytics />
       </body>
     </html>
   );
