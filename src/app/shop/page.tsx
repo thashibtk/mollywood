@@ -102,7 +102,7 @@ export default function Shop() {
               transition: { duration: 0.3 },
             }}
           >
-            Select a Category
+            Select a Genre
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -146,19 +146,19 @@ const Cards = ({
   const categoryData = [
     {
       category: "1111",
-      name: "Cosmic",
+      name: "The Orgin",
       src: "/categories/1.gif",
       alt: "Collection 1111",
     },
     {
       category: "2222",
-      name: "Quantum",
+      name: "The Observers",
       src: "/categories/2.gif",
       alt: "Collection 2222",
     },
     {
       category: "3333",
-      name: "Interstellar",
+      name: "The Outsiders",
       src: "/categories/3.gif",
       alt: "Collection 3333",
     },
@@ -176,7 +176,7 @@ const Cards = ({
     },
     {
       category: "6666",
-      name: "Galactic",
+      name: "The Devils",
       src: "/categories/6.gif",
       alt: "Collection 6666",
     },
@@ -194,7 +194,7 @@ const Cards = ({
     },
     {
       category: "9999",
-      name: "Celestial",
+      name: "The Core",
       src: "/categories/9.gif",
       alt: "Collection 9999",
     },

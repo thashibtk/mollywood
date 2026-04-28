@@ -181,7 +181,7 @@ export default function About() {
           className="mb-2 mt-20"
         >
           <AlienImage
-            src="/alien/aboutus.webp"
+            src="/alien/aboutusgif.gif"
             alt="Alien"
             className="left-2 sm:left-5 md:left-8 lg:left-15 w-48  h-34 sm:w-64 sm:h-50 md:w-80 md:h-64 lg:w-96 lg:h-64"
           />
@@ -195,28 +195,51 @@ export default function About() {
           className="text-center  w-full max-w-4xl px-2 sm:px-4"
         >
           <div className="space-y-4">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 brand-font">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 brand-font">
               MOLLYWOOD
             </h1>
             <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6">
-              India's First Premium Clothing Brand
+              India's First Premium Cult Brand
             </h2>
 
             <div className="space-y-4 text-base sm:text-lg md:text-xl leading-relaxed text-left">
               <p>
-                We are India's first luxury brand. At Mollywood Clothing, we believe real style doesn't need loud colours. That's why we dedicate ourselves exclusively to black and white fabrics only.
+                This is not a brand. This is a system.
               </p>
+
               <p>
-                Modern technology—and every system within it—is born from the binary. A 0 means nothing; a 1 means something. Alone they are simple, but together they build worlds. Our aesthetic follows the same idea — dark luxury is our theme.
+                Built on two elements  0 and 1. Black and white. Nothing else exists.
               </p>
+
               <p>
-                Our collection arrives once every 90 days, giving us the freedom to focus on quality from the yarn to the tags. Each drop represents a fresh evolution of our core identity and signature style.
+                Every system has a point of origin. Ours begins in the south in silence, in depth. 
+                A name that may feel familiar, but was never meant to be copied. 
+                It was meant to be redefined. Mollywood is not a reference. It is an evolution.
               </p>
+
               <p>
-                We are an online-only brand, making our products accessible to customers anywhere. We keep the experience simple and global. All orders are shipped worldwide, ensuring our work reaches those who value uniqueness.
+                We reject noise. We reject excess. What remains is contrast. 
+                What appears minimal is always intentional. What appears simple is always controlled.
               </p>
+
+              <p>
+                Every piece is constructed with precision 310 GSM fine cotton, double stitched for permanence, 
+                shaped in an international oversized fit designed to command space. 
+                Each garment is washed, refined, and corrected until it reaches its final state.
+              </p>
+
+              <p>
+                Our collections are released once every 90 days. Not for demand for precision. 
+                Every drop is an evolution. Every detail is deliberate.
+              </p>
+
+              <p>
+                We are online. Global. Selective. 
+                Our work reaches only those who understand that true luxury is controlled.
+              </p>
+
               <p className="font-bold text-center pt-4">
-                Two colours. One identity.
+                Black. White. Nothing else matters.
               </p>
             </div>
           </div>
@@ -330,6 +353,22 @@ export default function About() {
               </a>
             </div>
           </div>
+        </motion.div>
+
+        {/* Bottom Centered Go to Shop Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.4 }}
+          className="mt-12 sm:mt-16 w-full flex justify-center pb-8"
+        >
+          <motion.button
+            onClick={() => router.push("/shop")}
+            whileHover={{ scale: 1.1, x: 5 }}
+            className="px-6 py-2 border border-white text-white hover:bg-white hover:text-black transition-all duration-300 z-20"
+          >
+            Go to Shop →
+          </motion.button>
         </motion.div>
       </div>
       <Footer />
