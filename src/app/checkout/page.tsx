@@ -501,7 +501,7 @@ export default function CheckoutPage() {
           </h1>
           <p className="text-sm md:text-base text-gray-400 mb-8 max-w-md">
             Add items to your cart before proceeding to checkout. Explore our
-            latest cosmic-inspired apparel and find the perfect fit.
+            latest apparel and find the perfect fit.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <button

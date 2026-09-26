@@ -134,7 +134,7 @@ export default function Contact() {
               </h1>
             </div>
             <p className="text-gray-300 text-lg md:text-xl">
-              Reach out to the cosmic realm of Mollywood
+              Reach out to the core of Mollywood
             </p>
           </motion.div>
 
