@@ -147,36 +147,42 @@ const Cards = ({
     {
       category: "1111",
       name: "The Orgin",
+      subname : "The Ending. The Beginning. And Everything Within",
       src: "/categories/1.gif",
       alt: "Collection 1111",
     },
     {
       category: "2222",
       name: "The Observers",
+      subname : "They see what remains unseen",
       src: "/categories/2.gif",
       alt: "Collection 2222",
     },
     {
       category: "3333",
       name: "The Outsiders",
+      subname : "Beyond the known. Beyond belonging",
       src: "/categories/3.gif",
       alt: "Collection 3333",
     },
     {
       category: "4444",
-      name: "Nebula",
+      name: "The Reminders",
       src: "/categories/4.gif",
+      subname : "Where nothing ends, and everything begins",
       alt: "Collection 4444",
     },
     {
       category: "5555",
       name: "Stellar",
+      subname : "Born from darkness. Made to exist beyond",
       src: "/categories/5.gif",
       alt: "Collection 5555",
     },
     {
       category: "6666",
       name: "The Devils",
+      subname : "Beautifully damned. Forever untamed",
       src: "/categories/6.gif",
       alt: "Collection 6666",
     },
@@ -184,17 +190,20 @@ const Cards = ({
       category: "7777",
       name: "Astral",
       src: "/categories/7.gif",
+      subname :"Beyond the body. Beyond the known",
       alt: "Collection 7777",
     },
     {
       category: "8888",
       name: "Void",
+      subname :"Nothing within. Everything beyond",
       src: "/categories/8.gif",
       alt: "Collection 8888",
     },
     {
       category: "9999",
       name: "The Core",
+      subname:"The centre of everything",
       src: "/categories/9.gif",
       alt: "Collection 9999",
     },
@@ -217,6 +226,7 @@ const Cards = ({
             src={data.src}
             alt={data.alt}
             name={data.name}
+            subname={data.subname}
             category={data.category}
             isLocked={isLocked}
             onViewClick={
@@ -233,6 +243,7 @@ const Card = ({
   src,
   alt,
   name,
+  subname,
   category,
   isLocked = false,
   onViewClick,
@@ -240,6 +251,7 @@ const Card = ({
   src: string;
   alt: string;
   name: string;
+  subname?: string;
   category: string;
   isLocked?: boolean;
   onViewClick?: () => void;
@@ -342,7 +354,7 @@ const Card = ({
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 tracking-tight group-hover:text-white/90 transition-colors">
                 {name}
               </h3>
-              <p className="text-sm text-white/60 font-light">{category}</p>
+              <p className="text-sm text-white/60 font-light">{subname}</p>
             </div>
 
             {/* Button */}
