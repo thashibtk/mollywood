@@ -337,9 +337,9 @@ export default function CategoryPage() {
         <div className="max-w-7xl mx-auto px-4 mt-20 sm:mt-24 md:mt-28">
           <div className="text-center mb-8 sm:mb-12 space-y-4 relative z-10">
             <div className="relative z-10">
-              <p className="text-gray-300">{categoryName}</p>
+              <p className="text-gray-300">Collection {category}</p>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-2 ">
-                Collection {category}
+                {categoryName}
               </h1>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-4">
                 Select a product to explore

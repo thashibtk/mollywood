@@ -47,7 +47,7 @@ export default function RootLayout({
             {children}
           </CartProvider>
         </UserAuthProvider>
-        <Analytics />
+        {/* <Analytics /> */}
       </body>
     </html>
   );

@@ -340,9 +340,9 @@ const Card = ({
                 </p>
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 tracking-tight group-hover:text-white/90 transition-colors">
-                {category}
+                {name}
               </h3>
-              <p className="text-sm text-white/60 font-light">{name}</p>
+              <p className="text-sm text-white/60 font-light">{category}</p>
             </div>
 
             {/* Button */}
