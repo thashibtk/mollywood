@@ -21,51 +21,7 @@ const CATEGORY_PRICES: Record<string, number> = {
   "9999": 9999,
 };
 
-// Product attributes for filtering
-const MATERIALS = [
-  "Cotton",
-  "Polyester",
-  "Cotton Blend",
-  "Linen",
-  "Bamboo",
-  "Modal",
-  "Organic Cotton",
-  "Recycled Polyester",
-];
 
-const TYPES = [
-  "T-Shirt",
-  "Polo Shirt",
-  "Hoodie",
-  "Sweatshirt",
-  "Tank Top",
-  "Long Sleeve",
-  "V-Neck",
-  "Crew Neck",
-  "Henley",
-];
-
-const PATTERNS = [
-  "Solid",
-  "Striped",
-  "Polka Dot",
-  "Geometric",
-  "Abstract",
-  "Floral",
-  "Graphic Print",
-  "Logo Print",
-  "Tie-Dye",
-  "Camouflage",
-];
-
-const FITS = [
-  "Regular Fit",
-  "Slim Fit",
-  "Relaxed Fit",
-  "Oversized",
-  "Athletic Fit",
-  "Classic Fit",
-];
 
 export default function EditProductPage() {
   const router = useRouter();
@@ -93,10 +49,7 @@ export default function EditProductPage() {
     status: "draft",
     sku: "",
     sizes: {},
-    material: "",
-    type: "",
-    pattern: "",
-    fit: "",
+
   });
   const [sizes, setSizes] = useState<ProductSizes>({
     XS: 0,
@@ -143,10 +96,7 @@ export default function EditProductPage() {
         video_url: product.video_url || "",
         status: product.status || "draft",
         sku: product.sku || "",
-        material: product.material || "",
-        type: product.type || "",
-        pattern: product.pattern || "",
-        fit: product.fit || "",
+
       });
 
       // Set images and previews
@@ -420,10 +370,7 @@ export default function EditProductPage() {
           sizes: sizesWithStock,
           status: formData.status,
           sku: formData.sku || null,
-          material: formData.material || null,
-          type: formData.type || null,
-          pattern: formData.pattern || null,
-          fit: formData.fit || null,
+
         })
         .eq("id", productId);
 

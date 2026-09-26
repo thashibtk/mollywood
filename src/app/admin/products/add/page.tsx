@@ -21,51 +21,7 @@ const CATEGORY_PRICES: Record<string, number> = {
   "9999": 9999,
 };
 
-// Product attributes for filtering
-const MATERIALS = [
-  "Cotton",
-  "Polyester",
-  "Cotton Blend",
-  "Linen",
-  "Bamboo",
-  "Modal",
-  "Organic Cotton",
-  "Recycled Polyester",
-];
 
-const TYPES = [
-  "T-Shirt",
-  "Polo Shirt",
-  "Hoodie",
-  "Sweatshirt",
-  "Tank Top",
-  "Long Sleeve",
-  "V-Neck",
-  "Crew Neck",
-  "Henley",
-];
-
-const PATTERNS = [
-  "Solid",
-  "Striped",
-  "Polka Dot",
-  "Geometric",
-  "Abstract",
-  "Floral",
-  "Graphic Print",
-  "Logo Print",
-  "Tie-Dye",
-  "Camouflage",
-];
-
-const FITS = [
-  "Regular Fit",
-  "Slim Fit",
-  "Relaxed Fit",
-  "Oversized",
-  "Athletic Fit",
-  "Classic Fit",
-];
 
 export default function AddProductPage() {
   const router = useRouter();
@@ -91,10 +47,7 @@ export default function AddProductPage() {
     status: "draft",
     sku: "",
     sizes: {},
-    material: "",
-    type: "",
-    pattern: "",
-    fit: "",
+
   });
   const [sizes, setSizes] = useState<ProductSizes>({
     XS: 0,

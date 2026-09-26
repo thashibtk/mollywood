@@ -41,13 +41,13 @@ function SearchContent() {
 
       setLoading(true);
       try {
-        // Search in name, description, category, material, type, pattern, fit
+        // Search in name, description, category, material, type, fit
         const { data, error } = await supabase
           .from("products")
           .select("*")
           .eq("status", "published")
           .or(
-            `name.ilike.%${searchQuery}%,description.ilike.%${searchQuery}%,category.ilike.%${searchQuery}%,material.ilike.%${searchQuery}%,type.ilike.%${searchQuery}%,pattern.ilike.%${searchQuery}%,fit.ilike.%${searchQuery}%`
+            `name.ilike.%${searchQuery}%,description.ilike.%${searchQuery}%,category.ilike.%${searchQuery}%`
           )
           .order("created_at", { ascending: false });
 
@@ -271,11 +271,7 @@ function SearchContent() {
                           <span className="text-xs text-gray-400 uppercase tracking-wider">
                             {product.color}
                           </span>
-                          {product.fit && (
-                            <span className="text-xs text-gray-400">
-                              {product.fit}
-                            </span>
-                          )}
+
                         </div>
                       </div>
                     </div>
