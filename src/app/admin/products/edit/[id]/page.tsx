@@ -49,6 +49,7 @@ export default function EditProductPage() {
     status: "draft",
     sku: "",
     sizes: {},
+    color: "black",
 
   });
   const [sizes, setSizes] = useState<ProductSizes>({
@@ -96,6 +97,7 @@ export default function EditProductPage() {
         video_url: product.video_url || "",
         status: product.status || "draft",
         sku: product.sku || "",
+        color: product.color || "black",
 
       });
 
@@ -370,6 +372,7 @@ export default function EditProductPage() {
           sizes: sizesWithStock,
           status: formData.status,
           sku: formData.sku || null,
+          color: formData.color || "black",
 
         })
         .eq("id", productId);
@@ -462,6 +465,20 @@ export default function EditProductPage() {
                     rows={4}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
                     placeholder="Product description..."
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Color
+                  </label>
+                  <input
+                    type="text"
+                    name="color"
+                    value={formData.color || ""}
+                    onChange={handleChange}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                    placeholder="e.g., black, white"
                   />
                 </div>
 

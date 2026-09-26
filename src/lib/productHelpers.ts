@@ -107,7 +107,7 @@ export const mapSupabaseToShopProduct = (
     description: product.description || "",
     price: product.price,
     category: product.category,
-    color: "black" as const, // Default to black, can be enhanced later
+    color: (product.color as any) || "black", // Map the actual color if it exists
     image,
     size: sizeArray.length > 0 ? (sizeArray as any) : undefined,
 

@@ -350,6 +350,7 @@ export default function CategoryPage() {
           {/* Filters and Aligners Bar */}
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6 sm:mb-8">
             {/* Filters Button */}
+            {/* 
             <div className="flex items-center gap-3">
               <motion.button
                 onClick={() => setIsFilterOpen(!isFilterOpen)}
@@ -378,6 +379,7 @@ export default function CategoryPage() {
                 )}
               </motion.button>
             </div>
+            */}
 
             {/* Aligner Buttons */}
             <div className="hidden sm:flex items-center gap-2">
@@ -439,10 +441,10 @@ export default function CategoryPage() {
           </div>
 
           {/* Filter Sidebar */}
+          {/*
           <AnimatePresence>
             {isFilterOpen && (
               <>
-                {/* Backdrop */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -450,7 +452,6 @@ export default function CategoryPage() {
                   onClick={() => setIsFilterOpen(false)}
                   className="fixed inset-0 bg-black/50 z-40"
                 />
-                {/* Sidebar */}
                 <motion.div
                   initial={{ x: -400 }}
                   animate={{ x: 0 }}
@@ -459,7 +460,6 @@ export default function CategoryPage() {
                   className="fixed left-0 top-0 h-full w-80 max-w-[85vw] bg-black border-r-2 border-white z-50 overflow-y-auto"
                 >
                   <div className="p-6 space-y-6">
-                    {/* Header */}
                     <div className="flex items-center justify-between mb-6">
                       <h2 className="text-2xl font-bold uppercase tracking-wider">
                         Filters
@@ -474,7 +474,6 @@ export default function CategoryPage() {
                       </motion.button>
                     </div>
 
-                    {/* Clear Filters */}
                     {hasActiveFilters && (
                       <motion.button
                         onClick={clearAllFilters}
@@ -486,7 +485,6 @@ export default function CategoryPage() {
                       </motion.button>
                     )}
 
-                    {/* Size Filter */}
                     <div>
                       <h3 className="text-lg font-semibold mb-3 uppercase tracking-wider">
                         Size
@@ -510,7 +508,6 @@ export default function CategoryPage() {
                       </div>
                     </div>
 
-                    {/* Results Count */}
                     <div className="pt-4 border-t-2 border-white">
                       <p className="text-sm text-gray-300">
                         Showing {filteredProducts.length} of{" "}
@@ -522,6 +519,7 @@ export default function CategoryPage() {
               </>
             )}
           </AnimatePresence>
+          */}
 
           {loading ? (
             <ScorpioLoader />
