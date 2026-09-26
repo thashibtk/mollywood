@@ -532,22 +532,7 @@ export default function ProductDetailPage() {
                       <span className="text-sm uppercase tracking-wider border border-gray-600 px-3 py-1 rounded">
                         {product.color}
                       </span>
-                      {product.type && (
-                        <span className="text-sm text-gray-400">
-                          <span className="text-gray-500 hidden sm:inline">
-                            Type:
-                          </span>{" "}
-                          {product.type}
-                        </span>
-                      )}
-                      {product.material && (
-                        <span className="text-sm text-gray-400">
-                          <span className="text-gray-500 hidden sm:inline">
-                            Material:
-                          </span>{" "}
-                          {product.material}
-                        </span>
-                      )}
+
                     </div>
                   </div>
 
@@ -1122,11 +1107,7 @@ export default function ProductDetailPage() {
                                   <span className="text-xs text-gray-400 uppercase tracking-wider">
                                     {relatedProduct.color}
                                   </span>
-                                  {relatedProduct.fit && (
-                                    <span className="text-xs text-gray-400">
-                                      {relatedProduct.fit} fit
-                                    </span>
-                                  )}
+
                                 </div>
                               </div>
                             </div>

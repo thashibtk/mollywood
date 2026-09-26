@@ -300,48 +300,7 @@ export default function AdminProductsPage() {
                               </>
                             )}
                           </div>
-                          {(product.material ||
-                            product.type ||
-                            product.pattern ||
-                            product.fit) && (
-                            <div className="flex items-center gap-2 mt-1">
-                              {product.material && (
-                                <span className="text-xs text-gray-400">
-                                  {product.material}
-                                </span>
-                              )}
-                              {product.type && (
-                                <>
-                                  <span className="text-xs text-gray-300">
-                                    ·
-                                  </span>
-                                  <span className="text-xs text-gray-400">
-                                    {product.type}
-                                  </span>
-                                </>
-                              )}
-                              {product.pattern && (
-                                <>
-                                  <span className="text-xs text-gray-300">
-                                    ·
-                                  </span>
-                                  <span className="text-xs text-gray-400">
-                                    {product.pattern}
-                                  </span>
-                                </>
-                              )}
-                              {product.fit && (
-                                <>
-                                  <span className="text-xs text-gray-300">
-                                    ·
-                                  </span>
-                                  <span className="text-xs text-gray-400">
-                                    {product.fit}
-                                  </span>
-                                </>
-                              )}
-                            </div>
-                          )}
+
                         </div>
                       </div>
 

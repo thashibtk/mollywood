@@ -31,10 +31,7 @@ export interface Product {
   video_url: string | null;
   inventory: number;
   sizes: ProductSizes | null;
-  material: string | null;
-  type: string | null;
-  pattern: string | null;
-  fit: string | null;
+
   status: 'draft' | 'published' | 'archived' | 'stockout';
   sku: string | null;
   created_at: string;
@@ -51,10 +48,7 @@ export interface ProductInsert {
   video_url?: string;
   inventory?: number;
   sizes?: ProductSizes;
-  material?: string;
-  type?: string;
-  pattern?: string;
-  fit?: string;
+
   status?: 'draft' | 'published' | 'archived' | 'stockout';
   sku?: string;
 }

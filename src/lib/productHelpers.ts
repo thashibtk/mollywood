@@ -110,20 +110,7 @@ export const mapSupabaseToShopProduct = (
     color: "black" as const, // Default to black, can be enhanced later
     image,
     size: sizeArray.length > 0 ? (sizeArray as any) : undefined,
-    material: product.material || undefined,
-    type: product.type as
-      | "Round Neck"
-      | "V Neck"
-      | "Crew Neck"
-      | "Polo"
-      | undefined,
-    pattern: product.pattern as
-      | "Solid"
-      | "Striped"
-      | "Printed"
-      | "Graphic"
-      | undefined,
-    fit: product.fit as "Regular" | "Slim" | "Relaxed" | undefined,
+
     sku: product.sku || undefined,
   };
 };

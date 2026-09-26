@@ -698,11 +698,7 @@ export default function CategoryPage() {
                           <span className="text-xs text-gray-400 uppercase tracking-wider">
                             {product.color}
                           </span>
-                          {product.fit && (
-                            <span className="text-xs text-gray-400">
-                              {product.fit}
-                            </span>
-                          )}
+
                         </div>
                       </div>
                     </div>
