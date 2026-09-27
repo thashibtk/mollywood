@@ -538,9 +538,11 @@ export default function ProductDetailPage() {
 
                   {/* Product Description */}
                   <div className="mb-6">
-                    <p className="text-gray-300 leading-relaxed">
-                      {product.description}
-                    </p>
+                    <div 
+                      className="text-gray-300 leading-relaxed max-w-full break-words [&>p]:mb-4 [&>ul]:list-disc [&>ul]:ml-4 [&>ol]:list-decimal [&>ol]:ml-4"
+                      style={{ overflowWrap: 'anywhere' }}
+                      dangerouslySetInnerHTML={{ __html: product.description || '' }}
+                    />
                   </div>
 
                   {/* Price */}

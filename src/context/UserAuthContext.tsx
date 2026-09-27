@@ -61,8 +61,6 @@ export function UserAuthProvider({ children }: { children: ReactNode }) {
       } else {
         setIsAdmin(false);
       }
-
-      setIsLoading(false);
     });
 
     return () => subscription.unsubscribe();

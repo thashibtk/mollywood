@@ -4,6 +4,10 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { supabase, ProductInsert, ProductSizes, Product } from "@/lib/supabase";
 import { convertImageToWebP } from "@/utils/imageUtils";
+import dynamic from "next/dynamic";
+import "react-quill-new/dist/quill.snow.css";
+
+const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
 const CATEGORIES = ["1111", "2222", "3333", "4444", "5555", "6666", "7777", "8888", "9999"];
 const SIZES = ["XS", "S", "M", "L", "XL", "2XL", "3XL"];
@@ -454,18 +458,18 @@ export default function EditProductPage() {
                   />
                 </div>
 
-                <div>
+                <div className="mb-8">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Description
                   </label>
-                  <textarea
-                    name="description"
-                    value={formData.description}
-                    onChange={handleChange}
-                    rows={4}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                    placeholder="Product description..."
-                  />
+                  <div className="bg-white">
+                    <ReactQuill
+                      theme="snow"
+                      value={formData.description}
+                      onChange={(value) => setFormData({ ...formData, description: value })}
+                      className="h-48 mb-12"
+                    />
+                  </div>
                 </div>
 
                 <div>
