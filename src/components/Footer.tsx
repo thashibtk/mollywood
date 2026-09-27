@@ -93,7 +93,7 @@ export default function Footer() {
           {/* Copyright & Social Media */}
           <div className="flex flex-col items-center sm:items-end gap-3 w-full sm:w-auto">
             <p className="text-sm text-white/60 whitespace-nowrap">
-              © 2025 MOLLYWOOD. All rights reserved.
+              © 2026 MOLLYWOOD. All rights reserved.
             </p>
             
             {/* Social Media */}
