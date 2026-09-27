@@ -212,8 +212,8 @@ function LoginContent() {
       <StarsBackground />
       <Header />
 
-      <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-20">
-        <div className="w-full max-w-md">
+      <div className="relative z-10 min-h-screen flex px-4 pt-32 pb-20">
+        <div className="w-full max-w-md m-auto">
           <div className="border border-white/20 bg-black/50 backdrop-blur-md rounded-xl p-8 shadow-2xl">
             <h1 className="text-3xl font-bold mb-2 text-center uppercase tracking-wider">
               Sign In

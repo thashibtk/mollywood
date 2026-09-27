@@ -133,7 +133,7 @@ export default function CategoryPage() {
           .from("products")
           .select("*")
           .eq("status", "published")
-          .order("created_at", { ascending: false });
+          .order("created_at", { ascending: true });
 
         // Filter by category (exact match)
         query = query.eq("category", category);

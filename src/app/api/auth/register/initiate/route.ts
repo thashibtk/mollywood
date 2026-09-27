@@ -33,7 +33,11 @@ export async function POST(request: NextRequest) {
 
     if (existingUser) {
       // If user exists and is verified, return error
-      if (existingUser.email_confirmed_at || existingUser.user_metadata?.email_verified) {
+      if (
+        existingUser.user_metadata?.email_verified ||
+        (existingUser.email_confirmed_at &&
+          existingUser.user_metadata?.email_verified !== false)
+      ) {
         return NextResponse.json(
           { error: "User already exists. Please login." },
           { status: 400 }
