@@ -326,11 +326,11 @@ export default function About() {
           <div className="flex flex-col items-center gap-6">
             {/* Email */}
             <a
-              href="mailto:info@mollywoodclothing.com"
+              href="mailto:info@themollywoodclothing.com"
               className="flex items-center gap-3 text-base sm:text-lg hover:text-gray-300 transition-colors duration-300 group"
             >
               <Mail className="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform duration-300" />
-              <span>info@mollywoodclothing.com</span>
+              <span>info@themollywoodclothing.com</span>
             </a>
 
             {/* Social Media */}

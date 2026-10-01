@@ -338,10 +338,10 @@ export default function Contact() {
                   <div>
                     <h3 className="text-white font-semibold mb-1">Email</h3>
                     <a
-                      href="mailto:info@mollywoodclothing.com"
+                      href="mailto:info@themollywoodclothing.com"
                       className="text-gray-300 hover:text-white transition-colors"
                     >
-                      info@mollywoodclothing.com
+                      info@themollywoodclothing.com
                     </a>
                   </div>
                 </div>

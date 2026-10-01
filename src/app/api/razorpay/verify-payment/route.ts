@@ -358,7 +358,7 @@ export async function POST(request: NextRequest) {
                     ],
                     bcc: [
                       {
-                        email: "info@mollywoodclothing.com",
+                        email: "info@themollywoodclothing.com",
                         name: "Mollywood Admin"
                       }
                     ],
