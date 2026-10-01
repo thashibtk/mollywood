@@ -34,7 +34,7 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
           // If user is logged in but not admin, redirect them
           if (!isAdminUser && session.user) {
             await supabase.auth.signOut();
-            router.push("/");
+            window.location.href = "/";
           }
         } else {
           setIsAuthenticated(false);
@@ -62,11 +62,11 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
         // If user is logged in but not admin, sign them out
         if (!isAdminUser) {
           await supabase.auth.signOut();
-          router.push("/");
+          window.location.href = "/";
         }
       } else {
         setIsAuthenticated(false);
-        router.push("/admin/login");
+        window.location.href = "/admin/login";
       }
     });
 
@@ -91,14 +91,14 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
         throw new Error("Access denied. Admin privileges required.");
       }
       setIsAuthenticated(true);
-      router.push("/admin");
+      window.location.href = "/admin";
     }
   };
 
   const logout = async () => {
     await supabase.auth.signOut();
     setIsAuthenticated(false);
-    router.push("/admin/login");
+    window.location.href = "/admin/login";
   };
 
   return (

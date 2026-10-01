@@ -123,7 +123,7 @@ export function UserAuthProvider({ children }: { children: ReactNode }) {
     await supabase.auth.signOut();
     setUser(null);
     setIsAdmin(false);
-    router.push("/");
+    window.location.href = "/";
   };
 
   const resetPassword = async (email: string) => {

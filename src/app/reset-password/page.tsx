@@ -87,7 +87,7 @@ function ResetPasswordContent() {
       
       // Redirect to login after 2 seconds
       setTimeout(() => {
-        router.push("/login?message=Password reset successful. Please sign in with your new password.");
+        window.location.href = "/login?message=Password reset successful. Please sign in with your new password.";
       }, 2000);
     } catch (err: any) {
       setError(err.message || "Failed to reset password. Please try again.");

@@ -93,7 +93,7 @@ export default function RegisterPage() {
       // Login the user automatically
       await login(email, password);
       
-      router.push("/shop");
+      window.location.href = "/shop";
     } catch (err: any) {
       setError(err.message || "Failed to verify OTP");
       setOtpLoading(false);
@@ -171,7 +171,7 @@ export default function RegisterPage() {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium mb-2">
-                    Full Name (Optional)
+                    Full Name
                   </label>
                   <input
                     type="text"

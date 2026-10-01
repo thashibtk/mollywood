@@ -82,7 +82,7 @@ function LoginContent() {
       await login(email, password);
       // Redirect to the specified page or default to shop
       const redirectTo = searchParams.get("redirect") || "/shop";
-      router.push(redirectTo);
+      window.location.href = redirectTo;
     } catch (err: any) {
       setError(err.message || "Failed to login");
       setLoading(false);

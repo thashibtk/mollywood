@@ -356,6 +356,12 @@ export async function POST(request: NextRequest) {
                         name: orderData.customerName,
                       },
                     ],
+                    bcc: [
+                      {
+                        email: "info@mollywoodclothing.com",
+                        name: "Mollywood Admin"
+                      }
+                    ],
                     variables: {
                       customer_name: orderData.customerName,
                       order_id: order.order_id,
