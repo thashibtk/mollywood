@@ -13,116 +13,45 @@ function AuthCallbackContent() {
 
   useEffect(() => {
     let redirectTimeout: NodeJS.Timeout;
+    
+    const redirectTo = searchParams.get("redirect") || "/shop";
+    const error = searchParams.get("error");
 
-    const handleAuthCallback = async () => {
-      try {
-        // First, check if user is already authenticated (session might already exist)
-        const { data: { session: existingSession } } = await supabase.auth.getSession();
-        
-        if (existingSession) {
-          // User is already logged in, redirect immediately
-          const redirectTo = searchParams.get("redirect") || "/shop";
-          setStatus("Sign in successful! Redirecting...");
-          setTimeout(() => {
-            window.location.href = redirectTo;
-          }, 500);
-          return;
-        }
+    if (error) {
+      setStatus("Authentication failed");
+      redirectTimeout = setTimeout(() => {
+        router.push("/login?error=oauth_error");
+      }, 1500);
+      return;
+    }
 
-        // Get the code from URL
-        const code = searchParams.get("code");
-        const error = searchParams.get("error");
-
-        if (error) {
-          setStatus("Authentication failed");
-          redirectTimeout = setTimeout(() => {
-            router.push("/login?error=oauth_error");
-          }, 1500);
-          return;
-        }
-
-        if (code) {
-          setStatus("Exchanging code for session...");
-          
-          // Exchange code for session
-          const { data, error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
-
-          if (exchangeError) {
-            console.error("Error exchanging code for session:", exchangeError);
-            setStatus("Authentication failed");
-            redirectTimeout = setTimeout(() => {
-              router.push("/login?error=oauth_error");
-            }, 1500);
-            return;
-          }
-
-          // Verify session was created
-          if (!data.session) {
-            console.error("No session created");
-            setStatus("Authentication failed");
-            redirectTimeout = setTimeout(() => {
-              router.push("/login?error=oauth_error");
-            }, 1500);
-            return;
-          }
-
-          setStatus("Sign in successful! Redirecting...");
-
-          // Wait a moment for session to be fully established and context to update
-          await new Promise(resolve => setTimeout(resolve, 1000));
-
-          // Verify session is still valid
-          const { data: { session: verifySession } } = await supabase.auth.getSession();
-          
-          if (!verifySession) {
-            console.error("Session verification failed");
-            setStatus("Session verification failed");
-            redirectTimeout = setTimeout(() => {
-              router.push("/login?error=oauth_error");
-            }, 1500);
-            return;
-          }
-
-          // Get redirect destination
-          const redirectTo = searchParams.get("redirect") || "/shop";
-          
-          // Use window.location for more reliable redirect after OAuth
-          window.location.href = redirectTo;
-        } else {
-          // No code, but check if session exists (might have been set by Supabase automatically)
-          await new Promise(resolve => setTimeout(resolve, 1000));
-          
-          const { data: { session: checkSession } } = await supabase.auth.getSession();
-          
-          if (checkSession) {
-            // Session exists, redirect
-            const redirectTo = searchParams.get("redirect") || "/shop";
-            setStatus("Sign in successful! Redirecting...");
-            setTimeout(() => {
-              window.location.href = redirectTo;
-            }, 500);
-          } else {
-            // No code and no session, redirect to login
-            setStatus("No authorization code found");
-            redirectTimeout = setTimeout(() => {
-              router.push("/login");
-            }, 1500);
-          }
-        }
-      } catch (err) {
-        console.error("Error in auth callback:", err);
-        setStatus("Authentication failed");
-        redirectTimeout = setTimeout(() => {
-          router.push("/login?error=oauth_error");
-        }, 1500);
+    // Check if we already have a session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        setStatus("Sign in successful! Redirecting...");
+        window.location.href = redirectTo;
       }
-    };
+    });
 
-    handleAuthCallback();
+    // Listen for auth state changes (which Supabase JS triggers automatically when it exchanges the code)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN' && session) {
+        setStatus("Sign in successful! Redirecting...");
+        window.location.href = redirectTo;
+      }
+    });
+    
+    // Set a timeout just in case it takes too long
+    const timeout = setTimeout(() => {
+      setStatus("Authentication timed out or no code found");
+      router.push("/login?error=oauth_error");
+    }, 5000);
 
     // Cleanup
     return () => {
       if (redirectTimeout) clearTimeout(redirectTimeout);
+      clearTimeout(timeout);
+      subscription.unsubscribe();
     };
   }, [router, searchParams]);
 
